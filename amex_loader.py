@@ -25,9 +25,6 @@ def load_data_wrapper():
 	training_list = []
 	training_list_y = []
 
-	validation_list = []
-	validation_list_y = []
-
 	test_list = []
 	test_list_y = []
 
@@ -35,7 +32,6 @@ def load_data_wrapper():
 
 	i = 0
 	for idx, row in df.iterrows():
-		# print "Done {0}".format(((i * 100) / 40000))
 		new_list = []
 		idx = 0
 		for x in df:
@@ -68,36 +64,24 @@ def load_data_wrapper():
 				if new_list_y[0] == 1 or new_list_y[1] == 1:
 					new_list_y[2] = 0
 		
-		if i < 20000:
+		if i < 36000:
 			training_list.append(new_list)
-			training_list_y.append(new_list_y)	
-		elif i < 30000:
-			validation_list.append(new_list)
-			validation_list_y.append(new_list_y)
+			training_list_y.append(new_list_y)
 		else:
 			test_list.append(new_list)
 			test_list_y.append(new_list_y)
 
 		i = i + 1
-		# print i
 
 	print minwn	
 
 	training_inputs = [np.reshape(x, (43, 1)) for x in training_list]
 	training_results = [np.reshape(x, (3, 1)) for x in training_list_y]
 
-	validation_inputs = [np.reshape(x, (43, 1)) for x in validation_list]
-	validation_results = [np.reshape(x, (3, 1)) for x in validation_list_y]
-
 	testing_inputs = [np.reshape(x, (43, 1)) for x in test_list]
 	testing_results = [np.reshape(x, (3, 1)) for x in test_list_y]
 
 	training_data = zip(training_inputs, training_results)
-	validation_data = zip(validation_inputs, validation_results)
 	testing_data = zip(testing_inputs, testing_results)
 
-	# for xi in testing_data:
-	# 	print xi
-	# 	break
-
-	return (training_data, validation_data, testing_data)
+	return (training_data, testing_data)
