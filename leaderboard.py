@@ -7,8 +7,8 @@ def load_data_wrapper():
 	min_vals = []
 	max_vals = []
 	for ix in xrange(45):
-		min_vals.append(100000000)
-		max_vals.append(-100000000)
+		min_vals.append(1000000)
+		max_vals.append(-1000000)
 
 	idx = 0
 	for x in df:

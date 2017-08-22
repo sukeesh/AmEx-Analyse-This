@@ -64,7 +64,7 @@ def load_data_wrapper():
 				if new_list_y[0] == 1 or new_list_y[1] == 1:
 					new_list_y[2] = 0
 		
-		if i < 36000:
+		if i < 30000:
 			training_list.append(new_list)
 			training_list_y.append(new_list_y)
 		else:

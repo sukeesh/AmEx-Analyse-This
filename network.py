@@ -19,24 +19,26 @@ class Network(object):
             test_data=None):
         if test_data: n_test = len(test_data)
         n = len(training_data)
-        learning_rates = 0.0001
+        learning_rates = [0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001, 0.00001]
         ieta = 0
         acc_max = 0.0
         for j in xrange(epochs):
             random.shuffle(training_data)
+            if j == 100 or j == 200 or j == 250 or j == 300 or j == 350 or j == 400 or j == 500:
+                ieta = ieta + 1
             mini_batches = [
                 training_data[k:k+mini_batch_size]
                 for k in xrange(0, n, mini_batch_size)]
             for mini_batch in mini_batches:
-                self.update_mini_batch(mini_batch, learning_rates)
-                
+                self.update_mini_batch(mini_batch, learning_rates[ieta])
+
             numerator = float(self.evaluate(test_data))
             denominator = float(n_test)
             percentage = float( (numerator * 100.0) / denominator )
             acc_max = max(acc_max, percentage)
-            # print "Epoch {0}: {1} %".format(
-            #     j, percentage)
-        return acc_max
+            print "Epoch {0}: {1} %".format(
+                j, percentage)
+        # return acc_max
 
     def update_mini_batch(self, mini_batch, eta):
         nabla_b = [np.zeros(b.shape) for b in self.biases]
