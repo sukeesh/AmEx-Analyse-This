@@ -47,18 +47,17 @@ def load_data_wrapper():
 	min_vals = []
 	max_vals = []
 
-	for ix in xrange(46):
+	for ix in xrange(30):
 		min_vals.append(100000000)
 		max_vals.append(-100000000)
 
+	theGarbage = ['mvar17', 'mvar18', 'mvar19', 'mvar21', 'mvar22', 'mvar23', 'mvar25', 'mvar26', 'mvar27', 'mvar29', 'mvar30', 'mvar31', 'mvar33', 'mvar34', 'mvar35', 'mvar37', 'mvar38', 'mvar39']
+
 	idx = 0
 	for x in df:
-		if x == 'mvar17' or x == 'mvar18' or x == 'mvar19' or x == 'mvar21' or x == 'mvar22' or x == 'mvar23' or x == 'mvar25':
-			garbage = 0
-		elif x == 'mvar26' or x == 'mvar27' or x == 'mvar29' or x == 'mvar30' or x == 'mvar31' or x == 'mvar33' or x == 'mvar34':
-			garbage = 0
-		elif x == 'mvar35' or x == 'mvar37' or x == 'mvar38' or x == 'mvar39':
-			garbage = 0
+		print "Done processing {0} this".format(x)
+		if x in theGarbage:
+			theGarbage2 = 0
 		elif x == 'mvar12':
 			for y in df[x]:
 				min_vals[idx] = min(min_vals[idx], float(ret_val(str(y))))
@@ -66,39 +65,51 @@ def load_data_wrapper():
 			idx = idx + 1
 		elif x == 'mvar16':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar17'][y] + df['mvar18'][y] + df['mvar19'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar17'][y] + df['mvar18'][y] + df['mvar19'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar17'][y] + df['mvar18'][y] + df['mvar19'][y])/float(4.0)
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x == 'mvar20':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar21'][y] + df['mvar22'][y] + df['mvar23'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar21'][y] + df['mvar22'][y] + df['mvar23'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar21'][y] + df['mvar22'][y] + df['mvar23'][y])/float(4.0)
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x == 'mvar24':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar25'][y] + df['mvar26'][y] + df['mvar27'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar25'][y] + df['mvar26'][y] + df['mvar27'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar25'][y] + df['mvar26'][y] + df['mvar27'][y])/float(4.0)
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x == 'mvar28':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar29'][y] + df['mvar30'][y] + df['mvar31'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar29'][y] + df['mvar30'][y] + df['mvar31'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar29'][y] + df['mvar30'][y] + df['mvar31'][y])/float(4.0)
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x == 'mvar32':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar33'][y] + df['mvar34'][y] + df['mvar35'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar33'][y] + df['mvar34'][y] + df['mvar35'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar33'][y] + df['mvar34'][y] + df['mvar35'][y])/float(4.0)
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x == 'mvar36':
 			y = 0
-			while y < len(df[x]):
-				min_vals[idx] = min(min_vals[idx], float(df[x][y] + df['mvar37'][y] + df['mvar38'][y] + df['mvar39'][y])/float(4.0) )
-				max_vals[idx] = max(max_vals[idx], float(df[x][y] + df['mvar37'][y] + df['mvar38'][y] + df['mvar39'][y])/float(4.0) )
+			leng = len(df[x])
+			while y < leng:
+				theSum = float(df[x][y] + df['mvar37'][y] + df['mvar38'][y] + df['mvar39'][y])/float(4.0) 
+				min_vals[idx] = min(min_vals[idx], theSum)
+				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 		elif x != 'mvar1' and x != 'cm_key':
 			for y in df[x]:
@@ -120,15 +131,13 @@ def load_data_wrapper():
 
 	i = 0
 	for idx, row in df.iterrows():
+		if idx % 500 == 0:
+			print "Done processing {0}".format(idx)
 		new_list = []
 		idx = 0
 		for x in df:
-			if x == 'mvar17' or x == 'mvar18' or x == 'mvar19' or x == 'mvar21' or x == 'mvar22' or x == 'mvar23' or x == 'mvar25':
-				garbage = 0
-			elif x == 'mvar26' or x == 'mvar27' or x == 'mvar29' or x == 'mvar30' or x == 'mvar31' or x == 'mvar33' or x == 'mvar34':
-				garbage = 0
-			elif x == 'mvar35' or x == 'mvar37' or x == 'mvar38' or x == 'mvar39':
-				garbage = 0
+			if x in theGarbage:
+				theGarbage2 = 0
 			elif x == 'mvar12':
 				for y in df[x]:
 					min_vals[idx] = min(min_vals[idx], float(ret_val(str(y))))
