@@ -4,41 +4,41 @@ import pandas as pd
 
 def ret_val(stro):
 	strl = str(stro)
-	if "Dur" in strl:
+	if "Du" in strl:
 		return 1.0
 	if "Per" in strl:
 		return 2.0
 	if "Const" in strl:
 		return 3.0
-	if "Fin" in strl:
+	if "Fi" in strl:
 		return 4.0
-	if "Hou" in strl:
+	if "Ho" in strl:
 		return 5.0
-	if "Ent" in strl:
+	if "En" in strl:
 		return 6.0
 	if "Mis" in strl:
 		return 7.0
-	if "Non" in strl:
+	if "No" in strl:
 		return 8.0
-	if "App" in strl:
+	if "Ap" in strl:
 		return 9.0
-	if "Off" in strl:
+	if "Of" in strl:
 		return 10.0
 	if "Consu" in strl:
 		return 11.0
-	if "Manufa" in strl:
+	if "Ma" in strl:
 		return 12.0
-	if "Soci" in strl:
+	if "So" in strl:
 		return 13.0
-	if "Autom" in strl:
+	if "Au" in strl:
 		return 14.0
-	if "Produ" in strl:
+	if "Pr" in strl:
 		return 15.0
-	if "Tran" in strl:
+	if "Tr" in strl:
 		return 16.0
-	if "Unkno" in strl:
+	if "Un" in strl:
 		return 17.0
-	if "Mining" in strl:
+	if "Mi" in strl:
 		return 18.0
 
 def load_data_wrapper():	
@@ -48,8 +48,8 @@ def load_data_wrapper():
 	max_vals = []
 
 	for ix in xrange(30):
-		min_vals.append(10000000)
-		max_vals.append(-10000000)
+		min_vals.append(1000000)
+		max_vals.append(-1000000)
 
 	theGarbage = ['mvar17', 'mvar18', 'mvar19', 'mvar21', 'mvar22', 'mvar23', 'mvar25', 'mvar26', 'mvar27', 'mvar29', 'mvar30', 'mvar31', 'mvar33', 'mvar34', 'mvar35', 'mvar37', 'mvar38', 'mvar39']
 
@@ -67,50 +67,56 @@ def load_data_wrapper():
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar17'][y] + df['mvar18'][y] + df['mvar19'][y])/float(4.0)
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar17') + df.get_value(y, 'mvar18') + df.get_value(y, 'mvar19'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x == 'mvar20':
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar21'][y] + df['mvar22'][y] + df['mvar23'][y])/float(4.0)
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar21') + df.get_value(y, 'mvar22') + df.get_value(y, 'mvar23'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x == 'mvar24':
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar25'][y] + df['mvar26'][y] + df['mvar27'][y])/float(4.0)
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar25') + df.get_value(y, 'mvar26') + df.get_value(y, 'mvar27'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x == 'mvar28':
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar29'][y] + df['mvar30'][y] + df['mvar31'][y])/float(4.0)
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar29') + df.get_value(y, 'mvar30') + df.get_value(y, 'mvar31'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x == 'mvar32':
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar33'][y] + df['mvar34'][y] + df['mvar35'][y])/float(4.0)
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar33') + df.get_value(y, 'mvar34') + df.get_value(y, 'mvar35'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x == 'mvar36':
 			y = 0
 			leng = len(df[x])
 			while y < leng:
-				theSum = float(df[x][y] + df['mvar37'][y] + df['mvar38'][y] + df['mvar39'][y])/float(4.0) 
+				theSum = float(df.get_value(y, x) + df.get_value(y, 'mvar37') + df.get_value(y, 'mvar38') + df.get_value(y, 'mvar39'))/float(4.0)
 				min_vals[idx] = min(min_vals[idx], theSum)
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
+			idx = idx + 1
 		elif x != 'mvar1' and x != 'cm_key':
 			for y in df[x]:
 				min_vals[idx] = min(min_vals[idx], y)
@@ -119,17 +125,21 @@ def load_data_wrapper():
 		if x == 'mvar45':
 			break
 
+	# print idx
 
 	leaderboard_data = []
-	a = -1
-	b = 1
+	a = -1.0
+	b = 1.0
 
-	for idx, row in df.iterrows():
-		if idx % 500 == 0:
-			print "Done processing {0}".format(idx)
+	for ix, row in df.iterrows():
+		if ix == 1002:
+			break
+		if ix % 500 == 0:
+			print "Done processing {0}".format(ix)
 		new_list = []
 		idx = 0
 		for x in df:
+			# print x, idx
 			if x in theGarbage:
 				theGarbage2 = 0
 			elif x == 'mvar12':
@@ -138,50 +148,44 @@ def load_data_wrapper():
 					max_vals[idx] = max(max_vals[idx], float(ret_val(str(y))))
 				idx = idx + 1
 			elif x == 'mvar16':
-				to_p = float((float(row[x] + row['mvar17'] + row['mvar18'] + row['mvar19'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar17') + row.get('mvar18') + row.get('mvar19'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar20':
-				to_p = float((float(row[x] + row['mvar21'] + row['mvar22'] + row['mvar23'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar21') + row.get('mvar22') + row.get('mvar23'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar24':
-				to_p = float((float(row[x] + row['mvar25'] + row['mvar26'] + row['mvar27'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar25') + row.get('mvar26') + row.get('mvar27'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar28':
-				to_p = float((float(row[x] + row['mvar29'] + row['mvar30'] + row['mvar31'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar29') + row.get('mvar30') + row.get('mvar31'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar32':
-				to_p = float((float(row[x] + row['mvar33'] + row['mvar34'] + row['mvar35'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar33') + row.get('mvar34') + row.get('mvar35'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar36':
-				to_p = float((float(row[x] + row['mvar37'] + row['mvar38'] + row['mvar39'])/float(4.0)) - min_vals[idx])
-				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				to_p = float((float(row.get(x) + row.get('mvar37') + row.get('mvar38') + row.get('mvar39'))/float(4.0)) - min_vals[idx])/float(float(max_vals[idx]) - float(min_vals[idx]))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x == 'mvar12':
-				to_p = float(ret_val(row[x]) - min_vals[idx])
+				to_p = float(ret_val(row.get(x)) - min_vals[idx])
 				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			elif x != 'mvar1' and x != 'cm_key':
-				to_p = float(row[x] - min_vals[idx])
+				to_p = float(row.get(x) - min_vals[idx])
 				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-				new_list.append(((b - a) * 1.0 * to_p) + (a * 1.0))
+				new_list.append(((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			if x == 'mvar45':
 				break
 
 		leaderboard_data.append(new_list)
 
-	leaderboard_data = [np.reshape(x, (26, 1)) for x in leaderboard_data]
+	leaderboard_data = [np.reshape(x, (25, 1)) for x in leaderboard_data]
 
 	return leaderboard_data
