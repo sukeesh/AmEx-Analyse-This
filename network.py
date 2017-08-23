@@ -19,11 +19,11 @@ class Network(object):
             test_data=None):
         if test_data: n_test = len(test_data)
         n = len(training_data)
-        learning_rates = [0.1, 0.01]
+        learning_rates = [0.1, 0.01, 0.001, 0.0001, 0.00001]
         ieta = 0
         for j in xrange(epochs):
             random.shuffle(training_data)
-            if j == 80:
+            if j == 40 or j == 65 or j == 100 or j == 150:
                 ieta = ieta + 1
             mini_batches = [
                 training_data[k:k+mini_batch_size]
