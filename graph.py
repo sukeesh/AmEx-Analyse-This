@@ -10,7 +10,7 @@ supp = df["mvar46"]
 elit = df["mvar47"]
 cred = df["mvar48"]
 
-me = df["mvar35"]
+me = df["mvar38"]
 
-plt.plot(me, supp, 'ro')
+plt.plot(me, me, 'ro')
 plt.show()

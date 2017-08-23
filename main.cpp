@@ -9,7 +9,7 @@ int main(){
 	str[2] = "Credit";
 	string new_str;
 	cin >> new_str;
-	for ( int i = 0 ; i < new_str.size() ; i ++ ){
+	for ( int i = 0 ; i < new_str.size() && i < 1000 ; i ++ ){
 		if ( new_str[i] == '0' ){
 			cout << str[0] << endl;
 		}
