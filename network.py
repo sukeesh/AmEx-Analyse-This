@@ -12,7 +12,7 @@ class Network(object):
 
     def feedforward(self, a):
         for b, w in zip(self.biases, self.weights):
-            a = relu(np.dot(w, a)+b)
+            a = sigmoid(np.dot(w, a)+b)
         return a
 
     def SGD(self, training_data, epochs, mini_batch_size,
@@ -23,7 +23,7 @@ class Network(object):
         ieta = 0
         for j in xrange(epochs):
             random.shuffle(training_data)
-            if j == 45:
+            if j == 80:
                 ieta = ieta + 1
             mini_batches = [
                 training_data[k:k+mini_batch_size]
@@ -58,15 +58,15 @@ class Network(object):
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, activation)+b
             zs.append(z)
-            activation = relu(z)
+            activation = sigmoid(z)
             activations.append(activation)
         delta = self.cost_derivative(activations[-1], y) * \
-            relu_prime(zs[-1])
+            sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
         nabla_w[-1] = np.dot(delta, activations[-2].transpose())
         for l in xrange(2, self.num_layers):
             z = zs[-l]
-            sp = relu_prime(z)
+            sp = sigmoid_prime(z)
             delta = np.dot(self.weights[-l+1].transpose(), delta) * sp
             nabla_b[-l] = delta
             nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())

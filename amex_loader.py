@@ -62,6 +62,42 @@ def load_data_wrapper():
 	for x in df:
 		if x in theGarbage:
 			theGarbage2 = 0
+		elif x == 'mvar15':
+			for y in df[x]:
+				if y >= 2:
+					min_vals[idx] = min(min_vals[idx], 2)
+					max_vals[idx] = max(max_vals[idx], 2)
+				else:
+					min_vals[idx] = min(min_vals[idx], y)
+					max_vals[idx] = max(max_vals[idx], y)
+			idx = idx + 1
+		elif x == 'mvar9':
+			for y in df[x]:
+				if y > 5000000:
+					min_vals[idx] = min(min_vals[idx], 5000000)
+					max_vals[idx] = max(max_vals[idx], 5000000)
+				else:
+					min_vals[idx] = min(min_vals[idx], y)
+					max_vals[idx] = max(max_vals[idx], y)
+			idx = idx + 1
+		elif x == 'mvar6':
+			for y in df[x]:
+				if y > 3201:
+					min_vals[idx] = min(min_vals[idx], 3201)
+					max_vals[idx] = max(max_vals[idx], 3201)
+				else:
+					min_vals[idx] = min(min_vals[idx], y)
+					max_vals[idx] = max(max_vals[idx], y)
+			idx = idx + 1
+		elif x == 'mvar7':
+			for y in df[x]:
+				if y > 3:
+					min_vals[idx] = min(min_vals[idx], 3.1)
+					max_vals[idx] = max(max_vals[idx], 3.1)
+				else:
+					min_vals[idx] = min(min_vals[idx], y)
+					max_vals[idx] = max(max_vals[idx], y)
+			idx = idx + 1
 		elif x == 'mvar12':
 			for y in df[x]:
 				min_vals[idx] = min(min_vals[idx], float(ret_val(str(y))))
@@ -121,24 +157,15 @@ def load_data_wrapper():
 				max_vals[idx] = max(max_vals[idx], theSum)
 				y = y + 1
 			idx = idx + 1
-		# elif x == 'mvar14':
-		# 	for y in df[x]:
-		# 		if y == 1:
-		# 			min_vals[idx] = min(min_vals[idx], y)
-		# 			max_vals[idx] = max(max_vals[idx], y)
-		# 		else:
-		# 			min_vals[idx] = min(min_vals[idx], 0)
-		# 			max_vals[idx] = max(max_vals[idx], 0)
-		# 	idx = idx + 1
-		# elif x == 'mvar15':
-		# 	for y in df[x]:
-		# 		if y == 1:
-		# 			min_vals[idx] = min(min_vals[idx], 0)
-		# 			max_vals[idx] = max(max_vals[idx], 0)
-		# 		else:
-		# 			min_vals[idx] = min(min_vals[idx], 1)
-		# 			max_vals[idx] = max(max_vals[idx], 1)
-		# 	idx = idx + 1
+		elif x == 'mvar14':
+			for y in df[x]:
+				if y == 1:
+					min_vals[idx] = min(min_vals[idx], y)
+					max_vals[idx] = max(max_vals[idx], y)
+				else:
+					min_vals[idx] = min(min_vals[idx], 0)
+					max_vals[idx] = max(max_vals[idx], 0)
+			idx = idx + 1
 		else:
 			for y in df[x]:
 				min_vals[idx] = min(min_vals[idx], y)
@@ -164,6 +191,62 @@ def load_data_wrapper():
 		for x in df:
 			if x in theGarbage:
 				theGarbage2 = 0
+			elif x == 'mvar15':
+				if row[1][x] >= 2:
+					to_p = float(2 - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				else:
+					to_p = float(float(row[1][x]) - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				idx = idx + 1
+			elif x == 'mvar9':
+				if row[1][x] > 5000000:
+					to_p = float(5000000 - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				else:
+					to_p = float(float(row[1][x]) - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				idx = idx + 1
+			elif x == 'mvar6':
+				if row[1][x] > 3201:
+					to_p = float(3201 - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				else:
+					to_p = float(float(row[1][x]) - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				idx = idx + 1
+			elif x == 'mvar7':
+				if row[1][x] > 3:
+					to_p = float(3.1 - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				else:
+					to_p = float(float(row[1][x]) - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				idx = idx + 1
 			elif x == 'mvar16':
 				to_p = float(row[1][x] + row[1]['mvar17'] + row[1]['mvar18'] + row[1]['mvar19'])
 				to_p = ((to_p / 4.0) - min_vals[idx]) / float(max_vals[idx] - min_vals[idx])
@@ -213,36 +296,20 @@ def load_data_wrapper():
 				maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
 				mina = min(mina, ((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
-			# elif x == 'mvar14':
-			# 	if row[1][x] == 1:
-			# 		to_p = float(row[1][x] - min_vals[idx])
-			# 		to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-			# 		new_list.append(((b - a) * to_p) + (a * 1.0))
-			# 		maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
-			# 		mina = min(mina, ((b - a) * to_p) + (a * 1.0))
-			# 		idx = idx + 1
-			# 	else:
-			# 		to_p = float(0 - min_vals[idx])
-			# 		to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-			# 		new_list.append(((b - a) * to_p) + (a * 1.0))
-			# 		maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
-			# 		mina = min(mina, ((b - a) * to_p) + (a * 1.0))
-			# 		idx = idx + 1
-			# elif x == 'mvar15':
-			# 	if row[1][x] == 0:
-			# 		to_p = float(1 - min_vals[idx])
-			# 		to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-			# 		new_list.append(((b - a) * to_p) + (a * 1.0))
-			# 		maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
-			# 		mina = min(mina, ((b - a) * to_p) + (a * 1.0))
-			# 		idx = idx + 1
-			# 	else:
-			# 		to_p = float(0 - min_vals[idx])
-			# 		to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
-			# 		new_list.append(((b - a) * to_p) + (a * 1.0))
-			# 		maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
-			# 		mina = min(mina, ((b - a) * to_p) + (a * 1.0))
-			# 		idx = idx + 1
+			elif x == 'mvar14':
+				if row[1][x] == 1:
+					to_p = float(row[1][x] - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				else:
+					to_p = float(0 - min_vals[idx])
+					to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
+					new_list.append(((b - a) * to_p) + (a * 1.0))
+					maxa = max(maxa, ((b - a) * to_p) + (a * 1.0))
+					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
+				idx = idx + 1
 			else:
 				to_p = float(row[1][x] - min_vals[idx])
 				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
@@ -272,7 +339,7 @@ def load_data_wrapper():
 				if new_list_y[0] == 1 or new_list_y[1] == 1:
 					new_list_y[2] = 0
 		
-		if i < 70000:
+		if i < 72000:
 			training_list.append(new_list)
 			training_list_y.append(new_list_y)
 		else:

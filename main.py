@@ -10,7 +10,7 @@ print "Loading training and test data"
 training_data, test_data = amex_loader.load_data_wrapper()
 print "Done"
 
-net = network.Network([25, 9, 5, 3])
+net = network.Network([25, 20, 15, 10, 5, 3])
 net.SGD(training_data, 100, 20, test_data=test_data)
 
 print "Training data"
