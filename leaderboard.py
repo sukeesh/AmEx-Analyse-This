@@ -48,7 +48,7 @@ def load_data_wrapper():
 	max_vals = []
 
 	a = -1.0
-	b =  1.0
+	b = 1.0
 
 	features = 25
 
@@ -179,6 +179,9 @@ def load_data_wrapper():
 	maxa = -10000000
 	mina = 10000000
 
+	a = -1.0
+	b = 1.0
+	
 	i = 0
 	for row in df.iterrows():
 		i = i + 1
@@ -307,6 +310,8 @@ def load_data_wrapper():
 					mina = min(mina, ((b - a) * to_p) + (a * 1.0))
 				idx = idx + 1
 			else:
+				a = -1.0
+				b = 1.0
 				to_p = float(row[1][x] - min_vals[idx])
 				to_p = float(to_p) / float(float(max_vals[idx]) - float(min_vals[idx]))
 				new_list.append(((b - a) * to_p) + (a * 1.0))

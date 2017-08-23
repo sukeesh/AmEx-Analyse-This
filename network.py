@@ -19,11 +19,11 @@ class Network(object):
             test_data=None):
         if test_data: n_test = len(test_data)
         n = len(training_data)
-        learning_rates = [0.1, 0.01, 0.001, 0.0001, 0.00001]
+        learning_rates = [0.1]
         ieta = 0
         for j in xrange(epochs):
             random.shuffle(training_data)
-            if j == 40 or j == 65 or j == 100 or j == 150:
+            if j == 55:
                 ieta = ieta + 1
             mini_batches = [
                 training_data[k:k+mini_batch_size]
@@ -97,14 +97,14 @@ class Network(object):
 def relu(z):
     nz = z
     for i in xrange(len(z)):
-        nz[i] = max(0.1*z[i], z[i])
+        nz[i] = max(0, z[i])
     return nz
 
 def relu_prime(z):
     dz = z
     for i in xrange(len(z)):
         if z[i] <= 0:
-            dz[i] = 0.1
+            dz[i] = 0
         else:
             dz[i] = 1
     return dz

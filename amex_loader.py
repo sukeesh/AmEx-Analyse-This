@@ -47,8 +47,6 @@ def load_data_wrapper():
 	min_vals = []
 	max_vals = []
 
-	a = -1.0
-	b =  1.0
 
 	features = 25
 
@@ -183,6 +181,9 @@ def load_data_wrapper():
 	maxa = -10000000
 	mina = 10000000
 
+	a = -1.0
+	b = 1.0
+	
 	i = 0
 	for row in df.iterrows():
 		i = i + 1
@@ -326,20 +327,14 @@ def load_data_wrapper():
 		new_list_y.append(0)
 
 		for x in df:
-			if x == 'mvar46' or x == 'mvar49':
+			if x == 'mvar49':
 				new_list_y[0] = new_list_y[0] or int(row[1][x])
-				if new_list_y[1] == 1 or new_list_y[2] == 1:
-					new_list_y[0] = 0
-			elif x == 'mvar47' or x == 'mvar50':
+			elif x == 'mvar50':
 				new_list_y[1] = new_list_y[1] or int(row[1][x])
-				if new_list_y[0] == 1 or new_list_y[2] == 1:
-					new_list_y[1] = 0
-			elif x == 'mvar48' or x == 'mvar51':
+			elif x == 'mvar51':
 				new_list_y[2] = new_list_y[2] or int(row[1][x])
-				if new_list_y[0] == 1 or new_list_y[1] == 1:
-					new_list_y[2] = 0
 		
-		if i < 72000:
+		if i < 79000:
 			training_list.append(new_list)
 			training_list_y.append(new_list_y)
 		else:
